@@ -1,0 +1,182 @@
+%%
+%% This is file `HS.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% HS.dtx  (with options: `package')
+%% ----------------------------------------------------------------
+%% template --- short description.
+%% E-mail: yannislaz@gmail.com
+%% Released under the LaTeX Project Public License v1.3c or later
+%% See http://www.latex-project.org/lppl.txt
+%% ----------------------------------------------------------------
+%% 
+
+\RequirePackage{lastpage}
+\RequirePackage{graphicx}
+\RequirePackage{lipsum}
+\RequirePackage{url}
+\RequirePackage{color}
+\DeclareUrlCommand\email{\color{blue}\urlstyle{sf}}
+\def\ps@plain{%
+\let\@oddhead\@empty
+\def\@oddfoot{\hfill \footnotesize \sffamily Page \textsf{\thepage} of \pageref{LastPage}}%
+\def\@evenfoot{\hfill\footnotesize \sffamily Page \textsf{thepage} of \pageref{LastPage} }}
+\pagestyle{plain}
+ \gdef\letterdate{\today}
+\newcommand\thedate[1]{%
+     \@ifundefined{auxdate}{%
+        \gdef\letterdate{\par\leavevmode#1\par}}%
+       {\gdef\letterdate{\par\leavevmode\auxdate\par}}%
+}
+\newcommand{\Date}[1][]{%
+      \if!#1!  \thedate{\today}%
+          \else
+             \thedate{#1}%
+       \fi
+     \vspace{1\baselineskip}%
+    \letterdate
+}
+\newcounter{total}
+\newcommand\refprefix{HS-142/HLG/YL/mr/}
+\IfFileExists{autoincrementtotals.lcl}{}{\newwrite\tempfile
+\immediate\openout\tempfile=autoincrementtotals.lcl
+\immediate\write\tempfile{\thetotal}%
+\immediate\closeout\tempfile}
+\def\autoinc{%
+      \newread\inputstream
+      \immediate\openin\inputstream=\jobname.lcl
+      \immediate\read\inputstream to \auxcommand
+        \immediate\read\inputstream to \auxdate
+      \immediate\closeout\inputstream
+
+    \newcommand\OurRef{%
+           \leavevmode\refprefix
+           \ifnum9>\auxcommand 100\auxcommand\else
+               \ifnum99>\auxcommand 10\auxcommand\else
+                  \ifnum999>\auxcommand \auxcommand
+                  \fi
+               \fi
+          \fi
+
+           \vspace{1\baselineskip}%
+       }
+
+}
+\IfFileExists{\jobname.lcl}{\autoinc}{%
+    \newread\inputstream
+    \immediate\openin\inputstream=autoincrementtotals.lcl
+    \immediate\read\inputstream to \auxcommand
+    \immediate\closeout\inputstream
+    \setcounter{total}{\auxcommand}
+    \stepcounter{total}
+\newwrite\tempfile
+\immediate\openout\tempfile=autoincrementtotals.lcl
+\immediate\write\tempfile{\thetotal}%
+\immediate\closeout\tempfile
+
+\gdef\OurRef{\leavevmode\refprefix\thetotal\vspace{1\baselineskip}}
+%% write to jobname.lcl
+\newwrite\tempfile
+\immediate\openout\tempfile=\jobname.lcl
+\immediate\write\tempfile{\thetotal}%
+        \immediate\write\tempfile{\letterdate}%has error here Date not known yet
+\immediate\closeout\tempfile
+}
+\newcommand{\TO}[1][Test]{%
+    \leavevmode\par
+    Mr. Ziad Hoedroge\\
+    Project Director\\
+    M/s Habtoor Leighton Group\\
+    Al Habtoor Engineering Enterprises Co., LLC.\\
+    P.O.Box 2248\\
+    Doha\\
+    Qatar\\
+    \par
+    \vspace{2\baselineskip}%
+    Dear Sir
+   \vspace{\baselineskip}%
+}
+\newcommand{\TOMCD}[1][Test]{%
+    \leavevmode
+    Mr. Mohammad Azzam\\
+    Mr. Marios Charalambous\\
+    M/s HLS-DSI JV\\
+    Dubai\\
+    UAE\\
+    \\
+    \textbf{BY HAND}
+    \par
+    \vspace{2\baselineskip}
+    Dear Sir
+    \vspace{\baselineskip}
+}
+\parindent0pt
+\parskip1em
+\newlength\tempindent
+\settowidth\tempindent{Sub:\hspace{1em}}
+\newcommand{\RE}[2][]{%
+  \parskip0pt\par\noindent
+  \hangindent\tempindent
+  \textbf{#1#2}%
+  }
+\newif\if@signatureimage
+         \@signatureimagetrue
+\def\NoSignatureImage{\@signatureimagefalse}
+
+\def\SetSignatureImage#1{#1}
+\SetSignatureImage{\gdef\signatureimage{dryl.jpg}}
+\newcommand{\YL}{%
+    \leavevmode\par
+    Yours faithfully,\\
+    For HLS-DSI JV\par
+    \if@signatureimage\includegraphics[width=4cm]{\signatureimage}\\
+        \else
+        \vspace*{1.8cm}
+    \fi
+    Dr. Yiannis Lazarides\\
+    Habtoor City Project, Dubai\\
+    Project Director\\
+   \email{y.lazarides@hlspecon.com}\\
+    \vskip1.3\baselineskip
+}
+\newcommand{\cc}[1][]{%
+    \if!#1!
+       \leavevmode\par
+       D\&S HO\\
+       HLS HO\\
+      \else#1
+   \fi
+}
+\newcommand{\encl}{%
+    \leavevmode\par
+Encl. as above
+}
+\long\def\signature{%
+\YL
+\encl}
+
+\AtBeginDocument{%
+    \sffamily
+    \mbox{}
+    %\vspace*{-2.5cm}%
+    \includegraphics[width=\textwidth]{JVlogo.JPG}%include in head better
+
+}
+\newenvironment{mcdletter}[1][]{
+\Date\par
+\OurRef\par
+\TOMCD\par
+\textbf{#1}\par
+
+Please obtain quotations and process the necessary documentation, for the above materials as early
+as possible and provide us with your recommendation and price comparisons in order for us to release the
+order.
+}{\signature
+\par}
+
+
+%%  Copyright (C) 2013 by Dr. Yiannis Lazarides <yannislaz@gmail.com>
+%%
+%% End of file `HS.sty'.

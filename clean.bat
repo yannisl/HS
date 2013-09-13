@@ -1,0 +1,10 @@
+erase *.aux
+erase *.toc
+erase *.idx
+erase *.synctex.gz
+erase *.ilg
+erase *.ind
+erase *.idx
+erase *.out
+erase *.log
+erase *.glo

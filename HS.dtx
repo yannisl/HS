@@ -1,0 +1,505 @@
+% \iffalse meta-comment
+%<*internal>
+\iffalse
+%</internal>
+%<*readme>
+----------------------------------------------------------------
+template --- short description
+E-mail: yannislaz@gmail.com
+Released under the LaTeX Project Public License v1.3c or later
+See http://www.latex-project.org/lppl.txt
+----------------------------------------------------------------
+This file provides a template for defining a class.
+%</readme>
+%<*todo>
+add tcolorbox support
+%</todo>
+%<*internal>
+\fi
+\def\nameofplainTeX{plain}
+\ifx\fmtname\nameofplainTeX\else
+  \expandafter\begingroup
+\fi
+%</internal>
+%<*install>
+\input docstrip.tex
+\keepsilent
+\askforoverwritefalse
+\preamble
+----------------------------------------------------------------
+template --- short description.
+E-mail: yannislaz@gmail.com
+Released under the LaTeX Project Public License v1.3c or later
+See http://www.latex-project.org/lppl.txt
+----------------------------------------------------------------
+
+\endpreamble
+\postamble
+ Copyright (C) 2013 by Dr. Yiannis Lazarides <yannislaz@gmail.com>
+\endpostamble
+\usedir{tex/latex/\jobname}
+\generate{
+  \file{\jobname.sty}{\from{\jobname.dtx}{package}}
+ }
+%</install>
+%<install>\endbatchfile
+
+%<*internal>
+\usedir{source/latex/\jobname}
+\generate{
+  \file{\jobname.ins}{\from{\jobname.dtx}{install}}
+}
+\nopreamble\nopostamble
+\usedir{doc/latex/demopkg}
+\generate{
+  \file{README.txt}{\from{\jobname.dtx}{readme}}
+}
+\generate{
+  \file{test-01.tex}{\from{\jobname.dtx}{test-01}}
+}
+\generate{
+  \file{TODO.tex}{\from{\jobname.dtx}{TODO}}
+}
+\ifx\fmtname\nameofplainTeX
+  \expandafter\endbatchfile
+\else
+  \expandafter\endgroup
+\fi
+%</internal>
+%<*driver>
+\documentclass{ltxdoc}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+\DocInput{HS.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \CheckSum{301}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+% \GetFileInfo{HS.dtx}
+%
+% \title{The \textsf{HS} package\thanks{This file
+%         has version number \fileversion, last
+%         revised \filedate.}}
+% \author{Dr Yannis Lazarides\\y.lazarides@habtoorspecon.com}
+% \maketitle
+%
+% ^^A  The following were copied verbatim from source2e.tex.
+% \DoNotIndex{\def,\long,\edef,\xdef,\gdef,\let,\global}
+% \DoNotIndex{\if,\ifnum,\ifdim,\ifcat,\ifmmode,\ifvmode,\ifhmode,%
+%             \iftrue,\iffalse,\ifvoid,\ifx,\ifeof,\ifcase,\else,\or,\fi}
+% \DoNotIndex{\box,\copy,\setbox,\unvbox,\unhbox,\hbox,%
+%             \vbox,\vtop,\vcenter}
+% \DoNotIndex{\@empty,\immediate,\write}
+% \DoNotIndex{\egroup,\bgroup,\expandafter,\begingroup,\endgroup}
+% \DoNotIndex{\divide,\advance,\multiply,\count,\dimen}
+% \DoNotIndex{\relax,\space,\string}
+% \DoNotIndex{\csname,\endcsname,\@spaces,\openin,\openout,%
+%             \closein,\closeout}
+% \DoNotIndex{\catcode,\endinput}
+% \DoNotIndex{\jobname,\message,\read,\the,\m@ne,\noexpand}
+% \DoNotIndex{\hsize,\vsize,\hskip,\vskip,\kern,\hfil,\hfill,\hss}
+% \DoNotIndex{\m@ne,\z@,\z@skip,\@ne,\tw@,\p@}
+% \DoNotIndex{\dp,\wd,\ht,\vss,\unskip}
+%
+% ^^A  The following are specific to HS.dtx.
+% \DoNotIndex{\@currenvir,\@gobble,\@gobblefour,\@ifundefined,\@makeother}
+% \DoNotIndex{\@undefined,\active,\chardef,\day,\do,\dospecials,\E,\end,\I}
+% \DoNotIndex{\if@tempswa,\L,\LaTeX,\loop,\MessageBreak,\month}
+% \DoNotIndex{\newenvironment,\number,\repeat,\reserved@b,\reserved@c}
+% \DoNotIndex{\two@digits,\year,\*,\^}
+%
+% ^^A  Define some commands to help delineate my changes.
+% \newcommand{\startfcchanges}{^^A
+%   \centerline{^^A
+%     \makebox[0pt]{^^A
+%       \raisebox{-2\baselineskip}[0pt][0pt]{^^A
+%       \makebox[0pt][l]{\rule{1pt}{2\baselineskip}}}^^A
+%       \rule{1em}{1pt}^^A
+%       \rule{\linewidth}{1pt}^^A
+%       \rule{1em}{1pt}^^A
+%       \raisebox{-2\baselineskip}[0pt][0pt]{^^A
+%       \makebox[0pt][r]{\rule{1pt}{2\baselineskip}}}^^A
+%     }^^A
+%   }^^A
+%  \noindent
+% }
+% \newcommand{\stopfcchanges}{^^A
+%   \centerline{^^A
+%     \makebox[0pt]{^^A
+%       \raisebox{0pt}[0pt][0pt]{^^A
+%       \makebox[0pt][l]{\rule{1pt}{2\baselineskip}}}^^A
+%       \rule{1em}{1pt}^^A
+%       \rule{\linewidth}{1pt}^^A
+%       \rule{1em}{1pt}^^A
+%       \raisebox{0pt}[0pt][0pt]{^^A
+%       \makebox[0pt][r]{\rule{1pt}{2\baselineskip}}}^^A
+%     }^^A
+%   }^^A
+% }
+%
+% \begin{abstract}
+%
+%  This package offers a number of macros for typesetting  Contractual letters
+%  It arose out of a need to provide something simpler and fullfilled my needs. It is
+%  easily modifiable via a local definitions file or better fork it for your own purposes.
+%  It keeps commands to a minimum to avoid information overload. It offers a number
+%  of settings, in order to make it easily customizable.
+% \end{abstract}
+% \section{Introduction}
+%
+% Official correspondence, consists of a few constant fields; the package provides macros for
+% these. The |date| the letter was drafted, the filing reference of the sender, the Reference label
+% the signature, any enclosures and to whom the letter was also distributed.
+%
+% \DescribeMacro{Date} The command |\Date|\oarg{optional argument} is used to automatically typeset
+% today's date, or the argument provided. If the file is used again in a future date the date is cached as
+% the first time the file was processed. This way copies of old letters can be reprocessed.
+%
+% \DescribeMacro{\RE}
+%  The command |\RE|\oarg{optional argument}\marg{text} is used to typeset the reference
+%  on top of a letter.
+% \paragraph{Sample usage}
+% |HS| works much like any package by including it in your preamble using:
+% \begin{verbatim}
+% \includepackage{HS}
+% \end{verbatim}
+% I avoided any options to keep it simple for people not very familiar with \LaTeX\  to use and to modify.
+% \StopEventually{^^A
+%   \PrintChanges
+%   \PrintIndex
+% }
+%
+% \section{Implementation}
+%
+% Most users can stop reading at this point.  The Implementation section
+% contains the annotated source code for the \textsf{HS}
+% package itself, which is useful only to people who want a detailed and
+% precise explanation of how \textsf{HS} works.
+%
+%
+%    \begin{macrocode}
+%<*package>
+%    \end{macrocode}
+% We first load some packages that we use. The |lipsum| is provided so that you can experiment
+% while developing your own customization.
+%
+%    \begin{macrocode}
+\RequirePackage{lastpage}
+\RequirePackage{graphicx}
+\RequirePackage{lipsum}
+\RequirePackage{url}
+\RequirePackage{color}
+\DeclareUrlCommand\email{\color{blue}\urlstyle{sf}}
+%    \end{macrocode}
+%
+% The letter pages are numbered in a specific style, prevalent in Construction Projects as Page 1 of 2 etc.
+% It is to put it mildly not very wise to number the first page, but this is the house style. Try and convince
+% corporate types that it is unecessary.
+%
+%    \begin{macrocode}
+\def\ps@plain{%
+	\let\@oddhead\@empty
+	\def\@oddfoot{\hfill \footnotesize \sffamily Page \textsf{\thepage} of \pageref{LastPage}}%
+	\def\@evenfoot{\hfill\footnotesize \sffamily Page \textsf{thepage} of \pageref{LastPage} }}
+	\pagestyle{plain}
+%    \end{macrocode}
+%
+% \begin{macro}{\Date}
+% The command |\Date|\oarg[date]\marg{date} takes one argument
+% and typesets the date. It leaves the correct amount of space 
+% below it.
+%    \begin{macrocode}
+ \gdef\letterdate{\today}
+\newcommand\thedate[1]{%
+     \@ifundefined{auxdate}{%
+        \gdef\letterdate{\par\leavevmode#1\par}}%
+       {\gdef\letterdate{\par\leavevmode\auxdate\par}}%
+}
+\newcommand{\Date}[1][]{%
+      \if!#1!  \thedate{\today}%
+          \else
+             \thedate{#1}%
+       \fi
+     \vspace{1\baselineskip}%
+    \letterdate
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% This will be extended to provide a cache version later to enable re-runs without worrying about the
+% date changing.
+%
+% \begin{macro}{\OurRef}
+% \begin{macro}{\refprefix}
+% The user command \cs{OurRef} is used to provide the automatic reference to a letter. The user
+% command \cs{refprefix} provides the prefix such as HS-142/yl/1002
+% The Reference Number is stored the a counter |total|.
+%    \begin{macrocode}
+\newcounter{total}
+%    \end{macrocode}
+%    \begin{macrocode}
+\newcommand\refprefix{HS-142/HLG/YL/mr/}
+%    \end{macrocode}
+%
+% \subsection{Auto-incrementing references}
+% We keep track of an autoincrement counter by using two files. The first one 
+% |autoincrementtotals.lcl| keeps the totals. If you have five files letter-01.tex, letter-02.tex
+% this counter will keep the latest reference number. Don't wipe it out. 
+% The second file relates to the |\jobname| and is |jobname.lcl|. It caches the tracking
+% number for a particular letter.
+%
+% First we check if the totalizer files exists. In case this is our first letter, it will
+% create the file.
+%
+%    \begin{macrocode}
+\IfFileExists{autoincrementtotals.lcl}{}{\newwrite\tempfile
+	\immediate\openout\tempfile=autoincrementtotals.lcl
+	\immediate\write\tempfile{\thetotal}%
+	\immediate\closeout\tempfile}
+%    \end{macrocode}
+%
+% The auxiliary macro |\autoinc| reads from the |\jobname.lcl| the
+% cached value of the counter and stores it in the command |\OurRef|. This is  user 
+% command.
+%
+%    \begin{macrocode}
+\def\autoinc{%
+     	\newread\inputstream
+     	\immediate\openin\inputstream=\jobname.lcl
+     	\immediate\read\inputstream to \auxcommand
+        \immediate\read\inputstream to \auxdate
+     	\immediate\closeout\inputstream
+        
+   	\newcommand\OurRef{%
+           \leavevmode\refprefix
+           \ifnum9>\auxcommand 100\auxcommand\else
+               \ifnum99>\auxcommand 10\auxcommand\else
+                  \ifnum999>\auxcommand \auxcommand
+                  \fi
+               \fi
+          \fi
+           
+          
+           \vspace{1\baselineskip}%
+       }
+       
+}
+%    \end{macrocode}
+%
+% First we check if a file with the |\jobname.lcl| exists holding the RefNumber
+% If it does not exist increment the totalizer and write to the values to both files.
+%    \begin{macrocode}
+\IfFileExists{\jobname.lcl}{\autoinc}{%
+    \newread\inputstream
+    \immediate\openin\inputstream=autoincrementtotals.lcl
+    \immediate\read\inputstream to \auxcommand
+    \immediate\closeout\inputstream
+    \setcounter{total}{\auxcommand}        
+    \stepcounter{total}
+%    \end{macrocode}
+%  Having cached the reference number, we now upadte the |autoincrementtotals.lcl| file.
+%    \begin{macrocode}
+	\newwrite\tempfile
+	\immediate\openout\tempfile=autoincrementtotals.lcl
+	\immediate\write\tempfile{\thetotal}%
+	\immediate\closeout\tempfile
+
+	\gdef\OurRef{\leavevmode\refprefix\thetotal\vspace{1\baselineskip}}
+	%% write to jobname.lcl
+	\newwrite\tempfile
+	\immediate\openout\tempfile=\jobname.lcl
+	\immediate\write\tempfile{\thetotal}%
+        \immediate\write\tempfile{\letterdate}%has error here Date not known yet
+	\immediate\closeout\tempfile
+}
+%    \end{macrocode}
+% \end{macro} 
+% \end{macro}
+%
+% \subsection{Adressee}
+%
+% Here again, the way the addressee is handled depends on the house-style. Customization
+% is king here otherwise you will find you need to do a lot of typing.
+%
+% \begin{macro}{\TO} The macro |\TO|\oarg{Recipient details} takes one optional argument and
+%  defaults to the most typical recipient.
+%    \begin{macrocode}
+\newcommand{\TO}[1][Test]{%
+    \leavevmode\par
+    Mr. Ziad Hoedroge\\
+    Project Director\\
+    M/s Habtoor Leighton Group\\
+    Al Habtoor Engineering Enterprises Co., LLC.\\
+    P.O.Box 2248\\
+    Doha\\
+    Qatar\\
+    \par
+    \vspace{2\baselineskip}%
+    Dear Sir
+   \vspace{\baselineskip}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% Define your own macros, if you regularly send letters to a limited number of recipients.
+% A factory command can be provided in a future release.
+% 
+% \begin{macro}{\TOMCD}
+%    \begin{macrocode}
+\newcommand{\TOMCD}[1][Test]{%
+    \leavevmode
+    Mr. Mohammad Azzam\\
+    Mr. Marios Charalambous\\
+    M/s HLS-DSI JV\\
+    Dubai\\
+    UAE\\
+    \\
+    \textbf{BY HAND}
+    \par
+    \vspace{2\baselineskip}
+    Dear Sir
+    \vspace{\baselineskip}
+}
+\parindent0pt
+\parskip1em
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\RE}
+% Typeset the subject. The subject is normally set in and the 
+% subject is typeset in
+% bold and underlined.
+%    \begin{macrocode}
+\newlength\tempindent
+\settowidth\tempindent{Sub:\hspace{1em}}
+%
+\newcommand{\RE}[2][]{%
+  \parskip0pt\par\noindent
+  \hangindent\tempindent
+  \textbf{#1#2}%
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Signatures}
+%
+%  We provide some general commands first. The author has the option to print a letter both using
+%  a signature from an image or to allow space for the author to sign on the printed letter. When I
+%  email letters rather than deliver them in hard copies that is what I use.
+%  We first define booleans to handle the two cases. We also provide a switch for the author. The
+%  default is to typeset from an image.
+%
+% \begin{macro}{\@signatureimage}
+% \begin{macro}{\NoSignatureImage} The conditional |\@signatureimage| is used to provide
+% a switch for deciding if we need to print the signature image or not. The command |NoSignatureImage|
+% is an author command to set it to true or false.
+%
+%    \begin{macrocode}
+\newif\if@signatureimage
+         \@signatureimagetrue
+\def\NoSignatureImage{\@signatureimagefalse} 
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\YL}
+% Typesets my signature and title
+%    \begin{macrocode}
+
+\def\SetSignatureImage#1{#1}
+\SetSignatureImage{\gdef\signatureimage{dryl.jpg}}
+\newcommand{\YL}{%
+    \leavevmode\par
+    Yours faithfully,\\
+    For HLS-DSI JV\par
+    \if@signatureimage\includegraphics[width=4cm]{\signatureimage}\\
+        \else
+        \vspace*{1.8cm}
+    \fi
+    Dr. Yiannis Lazarides\\
+    Habtoor City Project, Dubai\\
+    Project Director\\
+   \email{y.lazarides@hlspecon.com}\\
+    \vskip1.3\baselineskip
+}
+%    \end{macrocode}
+%  \end{macro}
+%
+% \begin{macro}{\cc} The macro |\copies| typesets recipient names for whom letters were 
+% distributed.
+%    \begin{macrocode}
+\newcommand{\cc}[1][]{%
+    \if!#1! 
+       \leavevmode\par
+       D\&S HO\\
+       HLS HO\\
+      \else#1
+   \fi
+}
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\encl} The command |\encl| typesets our typical method of indicating enclosures.
+% again the macro has an optional command.
+%
+%    \begin{macrocode}
+\newcommand{\encl}{%
+    \leavevmode\par
+Encl. as above 
+}
+\long\def\signature{%
+\YL
+\encl}
+
+\AtBeginDocument{%
+    \sffamily
+    \mbox{}
+    %\vspace*{-2.5cm}%
+    \includegraphics[width=\textwidth]{JVlogo.JPG}%include in head better
+   
+}
+\newenvironment{mcdletter}[1][]{
+\Date\par 
+\OurRef\par
+\TOMCD\par
+\textbf{#1}\par
+
+Please obtain quotations and process the necessary documentation, for the above materials as early
+as possible and provide us with your recommendation and price comparisons in order for us to release the
+order.
+}{\signature
+\par}
+
+
+
+%    \end{macrocode}
+
+% \end{macro}
+%
+%    \begin{macrocode}
+%</package>
+%    \end{macrocode}
+%
+% \Finale
+%
