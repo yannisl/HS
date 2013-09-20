@@ -260,9 +260,10 @@ See http://www.latex-project.org/lppl.txt
 % The Reference Number is stored the a counter |total|.
 %    \begin{macrocode}
 \newcounter{total}
+\setcounter{total}{10}
 %    \end{macrocode}
 %    \begin{macrocode}
-\newcommand\refprefix{HS-142/HLG/YL/mr/}
+\newcommand\refprefix{HS-142/DSE040/HLG/yl/}
 %    \end{macrocode}
 %
 % \subsection{Auto-incrementing references}
@@ -295,15 +296,7 @@ See http://www.latex-project.org/lppl.txt
      	\immediate\closeout\inputstream
         
    	\newcommand\OurRef{%
-           \leavevmode\refprefix
-           \ifnum9>\auxcommand 100\auxcommand\else
-               \ifnum99>\auxcommand 10\auxcommand\else
-                  \ifnum999>\auxcommand \auxcommand
-                  \fi
-               \fi
-          \fi
-           
-          
+           \leavevmode\refprefix\auxcommand
            \vspace{1\baselineskip}%
        }
        
@@ -365,6 +358,29 @@ See http://www.latex-project.org/lppl.txt
 %    \end{macrocode}
 % \end{macro}
 %
+
+% \begin{macro}{\TOHLG} The macro |\TO|\oarg{Recipient details} takes one optional argument and
+%  defaults to the most typical recipient.
+%    \begin{macrocode}
+\newcommand{\TOHLG}[1][Test]{%
+    \leavevmode\par
+    Mr. Geoff Walker\\
+	 MEP Manager\\
+	 M/s Habtoor Leighton Group\\
+    Al Habtoor Leighton LLC\\
+	 P O Box 10869\\
+	 Dubai\\
+	 UAE\\
+    \par
+    \vspace{2\baselineskip}%
+    Dear Sir
+   \vspace{\baselineskip}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+
+
 % Define your own macros, if you regularly send letters to a limited number of recipients.
 % A factory command can be provided in a future release.
 % 
@@ -474,6 +490,11 @@ Encl. as above
 \YL
 \encl}
 
+\long\def\Signature{%
+\YL
+}
+
+
 \AtBeginDocument{%
     \sffamily
     \mbox{}
@@ -492,6 +513,14 @@ as possible and provide us with your recommendation and price comparisons in ord
 order.
 }{\signature
 \par}
+
+\newenvironment{contractual}[1][]{
+\Date\par 
+\OurRef\par
+\TOHLG\par
+\textbf{#1}\par
+
+}{\Signature}
 
 
 

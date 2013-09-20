@@ -42,7 +42,8 @@
     \letterdate
 }
 \newcounter{total}
-\newcommand\refprefix{HS-142/HLG/YL/mr/}
+\setcounter{total}{10}
+\newcommand\refprefix{HS-142/DSE040/HLG/yl/}
 \IfFileExists{autoincrementtotals.lcl}{}{\newwrite\tempfile
 \immediate\openout\tempfile=autoincrementtotals.lcl
 \immediate\write\tempfile{\thetotal}%
@@ -55,14 +56,7 @@
       \immediate\closeout\inputstream
 
     \newcommand\OurRef{%
-           \leavevmode\refprefix
-           \ifnum9>\auxcommand 100\auxcommand\else
-               \ifnum99>\auxcommand 10\auxcommand\else
-                  \ifnum999>\auxcommand \auxcommand
-                  \fi
-               \fi
-          \fi
-
+           \leavevmode\refprefix\auxcommand
            \vspace{1\baselineskip}%
        }
 
@@ -101,6 +95,22 @@
     Dear Sir
    \vspace{\baselineskip}%
 }
+
+\newcommand{\TOHLG}[1][Test]{%
+    \leavevmode\par
+    Mr. Geoff Walker\\
+ MEP Manager\\
+ M/s Habtoor Leighton Group\\
+    Al Habtoor Leighton LLC\\
+ P O Box 10869\\
+ Dubai\\
+ UAE\\
+    \par
+    \vspace{2\baselineskip}%
+    Dear Sir
+   \vspace{\baselineskip}%
+}
+
 \newcommand{\TOMCD}[1][Test]{%
     \leavevmode
     Mr. Mohammad Azzam\\
@@ -160,6 +170,10 @@ Encl. as above
 \YL
 \encl}
 
+\long\def\Signature{%
+\YL
+}
+
 \AtBeginDocument{%
     \sffamily
     \mbox{}
@@ -178,6 +192,14 @@ as possible and provide us with your recommendation and price comparisons in ord
 order.
 }{\signature
 \par}
+
+\newenvironment{contractual}[1][]{
+\Date\par
+\OurRef\par
+\TOHLG\par
+\textbf{#1}\par
+
+}{\Signature}
 
 
 %%  Copyright (C) 2013 by Dr. Yiannis Lazarides <yannislaz@gmail.com>
